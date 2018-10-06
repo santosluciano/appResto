@@ -1,0 +1,23 @@
+<h3>Abrir Caja</h3>
+<div [hidden]="enviado" style="width: 300px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="comentario">Comentario</label>
+      <input type="text" class="form-control" id="comentario" required [(ngModel)]="Caja.comentario" name="comentario">
+    </div>
+
+    <div class="form-group">
+      <label for="monto">Monto inicial</label>
+      <input type="number" class="form-control" id="monto" required [(ngModel)]="Caja.montoInicial" name="monto">
+    </div>
+
+    <button type="submit" class="btn btn-success">Abrir</button>
+    <a routerLink="/cajas" class="btn btn-primary active" role="button">Volver</a>
+  </form>
+</div>
+
+<div [hidden]="!enviado">
+  <h4>La Caja se abrio correctamente!</h4>
+  <button class="btn btn-success" (click)="newCaja()">Abrir otra</button>
+  <a routerLink="/cajas" class="btn btn-primary active" role="button">Volver</a>
+</div>

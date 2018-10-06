@@ -1,0 +1,7 @@
+a.borrar{
+  color: blue;
+}
+a.borrar:hover{
+  cursor: pointer;
+  color: red;
+}

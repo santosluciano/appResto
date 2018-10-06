@@ -1,0 +1,7 @@
+<h1>Cajas</h1>
+<div *ngFor="let Caja of Cajas" style="width: 300px;">
+  <app-detalle-caja [Caja]='Caja'></app-detalle-caja>
+</div>
+<div style="margin-top:20px;">
+  <a routerLink="/abrirCaja" class="btn btn-primary" role="button">Abrir Caja</a>
+</div>

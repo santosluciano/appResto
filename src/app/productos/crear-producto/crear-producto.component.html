@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="offset-md-4 col-md-4" style="margin-top:30px;">
+      <div [hidden]="enviado">
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input (change)="errorNombre()" type="text" class="form-control" id="nombre" required [(ngModel)]="producto.nombre" name="nombre">
+          </div>
+          <p [hidden]="!errornombre" id="errornombre" style="color:red;">Debe colocar un nombre</p>
+
+          <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <input type="text" class="form-control" id="descripcion" required [(ngModel)]="producto.descripcion" name="descripcion">
+          </div>
+
+          <div class="form-group">
+            <label for="precio">Precio</label>
+            <input (change)="errorPrecio()" type="number" class="form-control" id="precio" placeholder="$$$" required [(ngModel)]="producto.precio" name="precio">
+          </div>
+          <p [hidden]="!errorprecio" id="errorprecio" style="color:red;">Debe colocar un valor</p>
+<!--          <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="text" class="form-control" id="imagen" [(ngModel)]="producto.url_imagen" name="imagen">
+          </div>
+-->
+          <button type="submit" class="btn btn-success" style="margin-right:10px;">Agregar</button>
+          <a routerLink="/productos" class="btn btn-primary active" role="button">Volver</a>
+        </form>
+      </div>
+      <div [hidden]="!enviado">
+        <div class="alert alert-success" role="alert">
+          Producto agregado.
+        </div>
+        <button class="btn btn-success" (click)="newProducto()" style="margin-right:10px;">Agregar Nuevo</button>
+        <a routerLink="/productos" class="btn btn-primary active" role="button">Volver</a>
+      </div>
+    </div>
+</div>

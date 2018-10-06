@@ -1,0 +1,21 @@
+<div *ngIf="Caja">
+  <div>
+    <label>Apertura: </label> {{Caja.HoraApertura | date: 'dd/MM/yyyy, HH:mm'}}
+  </div>
+  <div>
+    <label>Monto Inicial: </label> ${{Caja.montoInicial}}
+  </div>
+  <div>
+    <label>Monto Actual: </label> ${{Caja.montoActual}}
+  </div>
+  <div>
+    <label>Comentario: </label> {{Caja.comentario}}
+  </div>
+  <div>
+    <label>Cierre: </label> {{Caja.HoraCierre}}
+  </div>
+
+  <span class="button is-small btn-danger" (click)='deleteCaja()'>Eliminar</span>
+
+  <hr/>
+</div>

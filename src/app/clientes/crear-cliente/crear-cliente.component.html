@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="offset-md-4 col-md-4" style="margin-top:30px;">
+      <div [hidden]="enviado">
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input (change)="errorNombre()" type="text" class="form-control" id="nombre" required [(ngModel)]="cliente.nombre" name="nombre">
+          </div>
+          <p [hidden]="!errornombre" id="errornombre" style="color:red;">Debe colocar un nombre</p>
+
+          <div class="form-group">
+            <label for="direccion">Direccion</label>
+            <input type="text" class="form-control" id="direccion" required [(ngModel)]="cliente.direccion" name="direccion">
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Telefono</label>
+            <input (change)="errorTelefono()" type="tel" class="form-control" id="telefono" required [(ngModel)]="cliente.telefono" name="telefono">
+          </div>
+          <p [hidden]="!errortelefono" id="errortelefono" style="color:red;">Telefono invalido</p>
+
+          <button type="submit" class="btn btn-success" style="margin-right:10px;">Agregar</button>
+          <a routerLink="/clientes" class="btn btn-primary active" role="button">Volver</a>
+        </form>
+      </div>
+      <div [hidden]="!enviado">
+        <div class="alert alert-success" role="alert">
+          Cliente agregado.
+        </div>
+        <button class="btn btn-success" (click)="newCliente()" style="margin-right:10px;">Agregar Nuevo</button>
+        <a routerLink="/clientes" class="btn btn-primary active" role="button">Volver</a>
+      </div>
+    </div>
+</div>

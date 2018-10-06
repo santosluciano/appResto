@@ -1,0 +1,40 @@
+<div *ngIf="producto" [hidden]="actualizar">
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-header text-white bg-info text-center">
+          <h4 class="card-title">{{producto.nombre}}</h4>
+        </div>
+        <div class="card-body">
+          <img class="card-img-top img-thumbnail img-fluid" src="{{producto.url_imagen}}">
+          <p class="card-text text-center">{{producto.descripcion}}</p>
+          <p>Precio: ${{producto.precio}}</p>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-success" (click)='updateProducto()' style="margin-right:20px;">Editar</button>
+          <button class="btn btn-danger" (click)='deleteProducto()' style="margin-left:20px;">Eliminar</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div [hidden]="!actualizar">
+  <form (ngSubmit)="onSubmit()">
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-header text-white bg-info text-center">
+          <input (change)="errorNombre()" type="text" class="form-control" id="nombre" required [(ngModel)]="producto.nombre" name="nombre">
+          <p [hidden]="!errornombre" id="errornombre" style="color:red;">Debe colocar un nombre</p>
+        </div>
+        <div class="card-body">
+          <img class="card-img-top img-thumbnail img-fluid" src="{{producto.url_imagen}}">
+          <input type="text" class="form-control" id="descripcion" required [(ngModel)]="producto.descripcion" name="descripcion">
+          <input (change)="errorPrecio()" type="number" class="form-control" id="precio" placeholder="$$$" required [(ngModel)]="producto.precio" name="precio">
+          <p [hidden]="!errorprecio" id="errorprecio" style="color:red;">Debe colocar un valor</p>
+        </div>
+        <div class="card-footer text-center">
+          <button type="submit" class="btn btn-success" style="margin-right:10px;">Actualizar</button>
+          <a (click)='deshacer()' class="btn btn-primary active" role="button">Deshacer</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

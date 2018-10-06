@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'puerto';
+  description = 'Aplicacion de gestion de restaurant';
+
+  constructor() {
+  }
+
 }
