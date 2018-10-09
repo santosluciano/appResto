@@ -1,0 +1,19 @@
+.btn-mesa{
+  margin-top: 15px;
+  background-color: #ebb84b;
+}
+.btn-mesa:active{
+  background-color: red;
+}
+.btn-agregarMesa{
+  margin-top: 15px;
+}
+.btn-agregarMesa{
+  margin-top: 15px;
+}
+.btn-agregarMesa:hover{
+  background-color: grey;
+}
+.btn-agregarMesa:active{
+  background-color: blue;
+}

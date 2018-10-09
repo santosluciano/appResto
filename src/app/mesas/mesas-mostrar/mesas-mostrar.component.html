@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-6 col-xs-6">
+    <div class="row mapa">
+      <div *ngFor="let mesa of mesas;index as i">
+        <div class="col-1 mesas">
+          <app-mesa-detalle [mesa]='mesa'></app-mesa-detalle>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

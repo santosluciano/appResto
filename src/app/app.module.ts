@@ -19,7 +19,9 @@ import { CrearProductoComponent } from './productos/crear-producto/crear-product
 import { DetalleCajaComponent } from './cajas/detalle-caja/detalle-caja.component';
 import { ListaCajasComponent } from './cajas/lista-cajas/lista-cajas.component';
 import { AbrirCajaComponent } from './cajas/abrir-caja/abrir-caja.component';
-
+import { MesaDetalleComponent } from './mesas/mesa-detalle/mesa-detalle.component';
+import { MesasMostrarComponent } from './mesas/mesas-mostrar/mesas-mostrar.component';
+import { MesaCrearComponent } from './mesas/mesa-crear/mesa-crear.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,10 @@ import { AbrirCajaComponent } from './cajas/abrir-caja/abrir-caja.component';
     CrearProductoComponent,
     DetalleCajaComponent,
     ListaCajasComponent,
-    AbrirCajaComponent
+    AbrirCajaComponent,
+    MesaDetalleComponent,
+    MesasMostrarComponent,
+    MesaCrearComponent,
   ],
   imports: [
     BrowserModule,

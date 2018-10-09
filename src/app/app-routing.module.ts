@@ -7,6 +7,8 @@ import { CrearProductoComponent } from './productos/crear-producto/crear-product
 import { ListaProductosComponent } from './productos/lista-productos/lista-productos.component';
 import { AbrirCajaComponent } from './cajas/abrir-caja/abrir-caja.component';
 import { ListaCajasComponent } from './cajas/lista-cajas/lista-cajas.component';
+import { MesasMostrarComponent } from './mesas/mesas-mostrar/mesas-mostrar.component';
+import { MesaCrearComponent } from './mesas/mesa-crear/mesa-crear.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'clientes', pathMatch: 'full' },
@@ -15,7 +17,9 @@ const routes: Routes = [
     { path: 'agregarProducto', component: CrearProductoComponent },
     { path: 'productos', component: ListaProductosComponent },
     { path: 'abrirCaja', component: AbrirCajaComponent },
-    { path: 'cajas', component: ListaCajasComponent }
+    { path: 'cajas', component: ListaCajasComponent },
+    { path: 'mesas', component: MesasMostrarComponent },
+    { path: 'crearMesa', component: MesaCrearComponent }
 ];
 
 @NgModule({
