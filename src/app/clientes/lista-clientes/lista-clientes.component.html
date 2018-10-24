@@ -4,6 +4,7 @@
       <a routerLink="/agregarCliente" class="fas fa-plus-circle fa-3x btn-agregar" style="position:fixed;z-index:9999"></a>
     </div>
     <div class="row" style="margin-top:80px;">
+      <i *ngIf="cargando" class="fas fa-circle-notch fa-spin fa-2x fa-fw offset-6"></i>
       <div *ngFor="let cliente of clientes" class="col-md-3" style="margin-bottom:20px;">
           <app-detalles-cliente [cliente]='cliente'></app-detalles-cliente>
       </div>

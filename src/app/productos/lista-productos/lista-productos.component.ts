@@ -12,8 +12,11 @@ import { ProductoService } from '../producto.service';
 export class ListaProductosComponent implements OnInit {
 
   productos: any;
+  cargando: boolean;
 
-  constructor(private productoService: ProductoService) { }
+  constructor(private productoService: ProductoService) {
+    this.cargando = true;
+   }
 
   ngOnInit() {
     this.getProductosLista();
@@ -27,6 +30,9 @@ export class ListaProductosComponent implements OnInit {
       )
     ).subscribe(productos => {
       this.productos = productos;
+      if (this.productos){
+        this.cargando = false;
+      }
     });
   }
 

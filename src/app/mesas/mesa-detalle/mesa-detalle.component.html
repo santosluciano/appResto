@@ -1,3 +1,213 @@
-<button [hidden]="mesa.numero<9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa"><h2>{{mesa.numero}}</h2></button>
-<button [hidden]="mesa.numero>9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa"><h2>&nbsp;{{mesa.numero}}&nbsp;</h2></button>
-<button [hidden]="" type="button" name="button" data-toggle="modal" data-target="#detalles" class="btn btn-default btn-lg btn-agregarMesa"><h3>&nbsp;+&nbsp;</h3></button>
+<div *ngIf="accion == 'mostrar'">
+  <div [hidden]="mesa.tipo != 'cuadrada'">
+    <button [hidden]="mesa.numero<9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa" (click)="open(content)"><h2>{{mesa.numero}}</h2></button>
+    <button [hidden]="mesa.numero>9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa" (click)="open(content)"><h2>&nbsp;{{mesa.numero}}&nbsp;</h2></button>
+    <button [hidden]="mesa.estado != 'inactiva'" type="button" name="button"class="btn btn-default btn-lg btn-agregarMesa" (click)="open(content)"><h3>&nbsp;+&nbsp;</h3></button>
+  </div>
+  <div [hidden]="mesa.tipo != 'redonda'">
+    <button [hidden]="mesa.numero<9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa-redonda" (click)="open(content)"><h2>{{mesa.numero}}</h2></button>
+    <button [hidden]="mesa.numero>9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa-redonda" (click)="open(content)"><h2>&nbsp;{{mesa.numero}}&nbsp;</h2></button>
+    <button [hidden]="mesa.estado != 'inactiva'" type="button" name="button"class="btn btn-default btn-lg btn-agregarMesa-redonda" (click)="open(content)"><h3>&nbsp;+&nbsp;</h3></button>
+  </div>
+</div>
+<div *ngIf="accion == 'pedidos' && (mesa.estado == 'disponible' || mesa.estado == 'inactiva')">
+  <div [hidden]="mesa.tipo != 'cuadrada'">
+    <button [hidden]="mesa.numero<9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa btn-disponible" (click)="open(pedido)"><h2>{{mesa.numero}}</h2></button>
+    <button [hidden]="mesa.numero>9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa btn-disponible" (click)="open(pedido)"><h2>&nbsp;{{mesa.numero}}&nbsp;</h2></button>
+    <div [hidden]="mesa.estado != 'inactiva'" name="button"class="btn btn-default btn-lg btn-agregarMesa btn-oculto"><h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3></div>
+  </div>
+  <div [hidden]="mesa.tipo != 'redonda'">
+    <button [hidden]="mesa.numero<9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa-redonda btn-disponible" (click)="open(pedido)"><h2>{{mesa.numero}}</h2></button>
+    <button [hidden]="mesa.numero>9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa-redonda btn-disponible" (click)="open(pedido)"><h2>&nbsp;{{mesa.numero}}&nbsp;</h2></button>
+    <button [hidden]="mesa.estado != 'inactiva'" type="button" name="button"class="btn btn-default btn-lg btn-agregarMesa-redonda btn-oculto"><h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3></button>
+  </div>
+</div>
+<div *ngIf="accion == 'pedidos' && mesa.estado == 'ocupada'">
+  <div [hidden]="mesa.tipo != 'cuadrada'">
+    <button [hidden]="mesa.numero<9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa btn-ocupada" (click)="open(actupedido)"><h2>{{mesa.numero}}</h2></button>
+    <button [hidden]="mesa.numero>9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa btn-ocupada" (click)="open(actupedido)"><h2>&nbsp;{{mesa.numero}}&nbsp;</h2></button>
+    <div [hidden]="mesa.estado != 'inactiva'" name="button"class="btn btn-default btn-lg btn-agregarMesa btn-oculto"><h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3></div>
+  </div>
+  <div [hidden]="mesa.tipo != 'redonda'">
+    <button [hidden]="mesa.numero<9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa-redonda btn-ocupada" (click)="open(actupedido)"><h2>{{mesa.numero}}</h2></button>
+    <button [hidden]="mesa.numero>9 || mesa.estado == 'inactiva'" type="button" name="button" class="btn btn-default btn-lg btn-mesa-redonda btn-ocupada" (click)="open(actupedido)"><h2>&nbsp;{{mesa.numero}}&nbsp;</h2></button>
+    <button [hidden]="mesa.estado != 'inactiva'" type="button" name="button"class="btn btn-default btn-lg btn-agregarMesa-redonda btn-oculto"><h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3></button>
+  </div>
+</div>
+<!-- Modal editar mesa-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modificar Mesa</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="numero">Numero de mesa</label>
+        <div class="input-group">
+          <input id="numero" class="form-control" placeholder="99" name="numero" required [(ngModel)]="mesa.numero">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tipo"> Estado de la mesa </label><br>
+        <select class="form-control" name="tipo" [(ngModel)]="mesa.tipo">
+         <option value="redonda">Redonda</option>
+         <option value="cuadrada">Cuadrada</option>
+        </select><br>
+      </div>
+      <div class="form-group">
+        <label for="estado"> Estado de la mesa </label><br>
+        <select class="form-control" name="estado" [(ngModel)]="mesa.estado">
+         <option value="inactiva">Inactiva</option>
+         <option value="disponible">Disponible</option>
+        </select><br>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('actualizarmesa')" >Guardar</button>
+  </div>
+</ng-template>
+<!-- Modal pedido-->
+<ng-template #pedido let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Nuevo Pedido</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Pedido N°</span>
+          </div>
+          <input id="numero" class="form-control" placeholder="99" name="numero" [(ngModel)]="mesa.numero" disabled>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Mesa N°</span>
+          </div>
+          <input id="numeromesa" class="form-control" placeholder="99" name="numeromesa" [(ngModel)]="mesa.numero" disabled>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="numero">Productos</label>
+        <div class="input-group">
+          <select class="form-control" name="tipo" [(ngModel)]="idProducto">
+           <option  *ngFor="let producto of productos" value="{{producto.id}}">{{producto.nombre}} ${{producto.precio}}</option>
+         </select>
+         &nbsp;
+         <br>
+         <div class="input-group-prepend">
+           <span class="input-group-text">Cantidad</span>
+         </div>
+          <input id="cantidad" type="number" class="form-control col-md-2" placeholder="99" name="cantidad" [(ngModel)]="cantidadProducto">
+         <br>
+        </div>
+        <br>
+        <div *ngFor="let produ of productosPedido; let i = index" >
+          ${{produ.precio}} {{produ.nombre}} Cantidad: {{produ.cantidad}} <button class="fas fa-trash-alt btn btn-danger" (click)="borrarProducto(i)"></button>
+        </div>
+        <button type="button" class="btn btn-primary" (click) = "agregarProducto()">Agregar Producto</button>
+      </div>
+      <div class="form-group">
+        <label for="tipo"> Cliente </label>
+        <select class="form-control" name="tipo" [(ngModel)]="idcliente">
+         <option  *ngFor="let cliente of clientes" value="{{cliente.id}}">{{cliente.nombre}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="total">Total</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input id="total" class="form-control" placeholder="0" name="total" [(ngModel)]="total" disabled>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fpago"> Forma de pago </label><br>
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="fpago" [(ngModel)]="formaPago">
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="contado"> Contado
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="debito"> Debito
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="credito"> Credito
+          </label>
+        </div>
+        <hr>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('abrirmesa')" >Abrir Mesa</button>
+  </div>
+</ng-template>
+<!-- Modal actualizar pedido-->
+<ng-template #actupedido let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Actualizar Pedido</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="numero">Numero de pedido</label>
+        <div class="input-group">
+          <input id="numero" class="form-control" placeholder="99" name="numero" [(ngModel)]="mesa.numero" disabled>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="numeromesa">Numero de mesa</label>
+        <div class="input-group">
+          <input id="numeromesa" class="form-control" placeholder="99" name="numeromesa" [(ngModel)]="mesa.numero" disabled>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tipo"> Cliente </label>
+        <select class="form-control" name="tipo" [(ngModel)]="idcliente">
+         <option  *ngFor="let cliente of clientes" value="{{cliente.id}}">{{cliente.nombre}}</option>
+        </select><br>
+      </div>
+      <div class="form-group">
+        <label for="total">Total</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input id="total" class="form-control" placeholder="0" name="total" [(ngModel)]="total" disabled>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fpago"> Forma de pago </label><br>
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="fpago" [(ngModel)]="formaPago">
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="contado"> Contado
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="debito"> Debito
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="credito"> Credito
+          </label>
+        </div>
+        <hr>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('cerrarmesa')" >Cerrar Mesa</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('actualizarpedido')" >Actualizar Mesa</button>
+  </div>
+</ng-template>

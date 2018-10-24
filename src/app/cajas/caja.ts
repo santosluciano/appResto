@@ -5,4 +5,6 @@ export class Caja {
     montoActual: number;
     comentario: string;
     HoraCierre: number;
+    numeroUltimoPedido: number;
+    activa: boolean;
 }

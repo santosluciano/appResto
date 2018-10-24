@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -22,6 +23,10 @@ import { AbrirCajaComponent } from './cajas/abrir-caja/abrir-caja.component';
 import { MesaDetalleComponent } from './mesas/mesa-detalle/mesa-detalle.component';
 import { MesasMostrarComponent } from './mesas/mesas-mostrar/mesas-mostrar.component';
 import { MesaCrearComponent } from './mesas/mesa-crear/mesa-crear.component';
+import { PedidoDetalleComponent } from './pedidos/pedido-detalle/pedido-detalle.component';
+import { ListaPedidosComponent } from './pedidos/lista-pedidos/lista-pedidos.component';
+import { CrearPedidoComponent } from './pedidos/crear-pedido/crear-pedido.component';
+import { SistemaPedidosComponent } from './pedidos/sistema-pedidos/sistema-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +43,18 @@ import { MesaCrearComponent } from './mesas/mesa-crear/mesa-crear.component';
     MesaDetalleComponent,
     MesasMostrarComponent,
     MesaCrearComponent,
+    PedidoDetalleComponent,
+    ListaPedidosComponent,
+    CrearPedidoComponent,
+    SistemaPedidosComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebase),
-    AngularFireDatabaseModule // for database
+    AngularFireDatabaseModule, // for database
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

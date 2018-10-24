@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { Mesa } from '../mesa';
@@ -12,7 +12,7 @@ import { MesaService } from '../mesa.service';
 })
 export class MesaCrearComponent implements OnInit {
 
-  mesa: Mesa = new Mesa();
+  @Input() mesa: Mesa;
 
 
   constructor(private mesaService: MesaService) { }
@@ -20,20 +20,12 @@ export class MesaCrearComponent implements OnInit {
   ngOnInit() {
   }
 
-  newMesa(): void {
-    this.mesa = new Mesa();
-  }
-
-  salvar() {
-    this.mesaService.crearMesa(this.mesa);
-    this.mesa = new Mesa();
+  actualizar() {
+    this.mesaService.updateMesa(this.mesa.id,this.mesa);
   }
 
   onSubmit() {
-    this.mesa.estado = "inactiva";
-    this.mesa.tipo = "cuadrada";
-    this.mesa.numero = 0;
-    this.salvar();
+    this.actualizar();
   }
 
 }

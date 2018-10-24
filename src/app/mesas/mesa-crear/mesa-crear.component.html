@@ -2,8 +2,20 @@
     <div class="offset-md-4 col-md-4" style="margin-top:30px;">
       <div>
         <form (ngSubmit)="onSubmit()">
-          <button type="submit" class="btn btn-success" style="margin-right:10px;">Agregar</button>
-          <a routerLink="/mesas" class="btn btn-primary active" role="button">Volver</a>
+          <div class="form-group">
+           <label for="numero">Numero de Mesa</label>
+           <input type="number" class="form-control" id="numero" required [(ngModel)]="mesa.numero">
+           </div>
+           <div class="form-group">
+             <label for="tipo">Tipo</label>
+             <input type="text" class="form-control" id="tipo" required [(ngModel)]="mesa.tipo">
+           </div>
+           <div class="form-group">
+             <label for="estado">Estado</label>
+             <input type="text" class="form-control" id="estado" required [(ngModel)]="mesa.estado">
+           </div>
+          <button type="submit" class="btn btn-success" style="margin-right:10px;">Actualizar</button>
+          <a routerLink="/mesas" class="btn btn-primary active" role="button">Cerrar</a>
         </form>
       </div>
     </div>

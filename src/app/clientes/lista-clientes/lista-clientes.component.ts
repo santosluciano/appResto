@@ -11,8 +11,11 @@ import { ClienteService } from '../cliente.service';
 export class ListaClientesComponent implements OnInit {
 
   clientes: any;
+  cargando: boolean;
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(private clienteService: ClienteService) {
+    this.cargando = true;
+  }
 
   ngOnInit() {
     this.getClientesLista();
@@ -26,6 +29,9 @@ export class ListaClientesComponent implements OnInit {
       )
     ).subscribe(clientes => {
       this.clientes = clientes;
+      if (this.clientes){
+        this.cargando = false;
+      }
     });
   }
 

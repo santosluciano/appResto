@@ -1,19 +1,52 @@
-.btn-mesa{
+.btn-mesa,.btn-mesa-redonda{
   margin-top: 15px;
   background-color: #ebb84b;
 }
-.btn-mesa:active{
+.btn-mesa:active,.btn-mesa-redonda:active{
   background-color: red;
 }
-.btn-agregarMesa{
+.btn-agregarMesa,.btn-agregarMesa-redonda{
   margin-top: 15px;
 }
-.btn-agregarMesa{
-  margin-top: 15px;
-}
-.btn-agregarMesa:hover{
+.btn-agregarMesa:hover,.btn-agregarMesa-redonda:hover{
   background-color: grey;
 }
-.btn-agregarMesa:active{
+.btn-mesa-redonda:hover,.btn-mesa:hover{
+  background-color: #f76f0c;
+}
+.btn-agregarMesa:active,.btn-agregarMesa-redonda:active{
   background-color: blue;
+}
+.btn-mesa-redonda,.btn-agregarMesa-redonda{
+  border-radius: 100px;
+}
+.btn-oculto{
+  background-color: white;
+  cursor: default;
+}
+.btn-oculto:hover{
+  background-color: white;
+  cursor: default;
+}
+.btn-oculto:active{
+  background-color: white;
+  cursor: default;
+}
+.btn-disponible{
+  background-color: #0cf71a;
+}
+.btn-disponible:hover{
+  background-color: #338939;
+}
+.btn-disponible:active{
+  background-color: #338939;
+}
+.btn-ocupada{
+  background-color: #ff0000;
+}
+.btn-ocupada:hover{
+  background-color: #de7575;
+}
+.btn-ocupada:active{
+  background-color: #de7575;
 }

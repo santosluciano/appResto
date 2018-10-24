@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 
-import { MesaService } from '../mesa.service';
+import { MesaService } from '../../mesas/mesa.service';
+
 
 @Component({
-  selector: 'app-mesas-mostrar',
-  templateUrl: './mesas-mostrar.component.html',
-  styleUrls: ['./mesas-mostrar.component.css']
+  selector: 'app-sistema-pedidos',
+  templateUrl: './sistema-pedidos.component.html',
+  styleUrls: ['./sistema-pedidos.component.css']
 })
-export class MesasMostrarComponent implements OnInit {
+export class SistemaPedidosComponent implements OnInit {
 
   mesas: any;
-  editar: false;
   cargando: boolean;
   accion: string;
 
@@ -24,7 +24,7 @@ export class MesasMostrarComponent implements OnInit {
   }
 
   getMesasLista() {
-    this.accion = 'mostrar';
+    this.accion = 'pedidos';//aca va pedidos
     this.mesaService.getMesasLista().snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))
@@ -35,10 +35,6 @@ export class MesasMostrarComponent implements OnInit {
         this.cargando = false;
       }
     });
-  }
-
-  deleteMesas() {
-    this.mesaService.deleteAll();
   }
 
 }

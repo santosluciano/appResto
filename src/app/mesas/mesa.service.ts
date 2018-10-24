@@ -34,6 +34,17 @@ export class MesaService {
     this.mesasRef.remove().catch(error => this.handleError(error));
   }
 
+  hasNumero(mesaNumero): boolean{
+    let mesas;
+    if (mesaNumero == 0){
+        return false;
+    } else {
+      this.mesasRef.query.orderByChild("numero").equalTo(mesaNumero).on("child_added", function(snapshot) {
+         mesas = snapshot.key;
+       });
+       return mesas;
+    }
+  }
   private handleError(error) {
     console.log(error);
   }

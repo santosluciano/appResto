@@ -12,30 +12,33 @@ export class ProductoService {
 
   constructor(private db: AngularFireDatabase) {
     this.productosRef = db.list(this.dbPath);
- }
+   }
 
- crearProducto(producto: Producto): void {
-   this.productosRef.push(producto);
- }
+   crearProducto(producto: Producto): void {
+     this.productosRef.push(producto);
+   }
 
- updateProducto(id: string, value: any): void {
-   this.productosRef.update(id, value).catch(error => this.handleError(error));
- }
+   updateProducto(id: string, value: any): void {
+     this.productosRef.update(id, value).catch(error => this.handleError(error));
+   }
 
- deleteProducto(id: string): void {
-   this.productosRef.remove(id).catch(error => this.handleError(error));
- }
+   deleteProducto(id: string): void {
+     this.productosRef.remove(id).catch(error => this.handleError(error));
+   }
 
- getProductosLista(): AngularFireList<Producto> {
-   return this.productosRef;
- }
+   getProductosLista(): AngularFireList<Producto> {
+     return this.productosRef;
+   }
 
- deleteAll(): void {
-   this.productosRef.remove().catch(error => this.handleError(error));
- }
+   getProducto(id:string): any {
+   }
 
- private handleError(error) {
-   console.log(error);
- }
+   deleteAll(): void {
+     this.productosRef.remove().catch(error => this.handleError(error));
+   }
+
+   private handleError(error) {
+     console.log(error);
+   }
 
 }
