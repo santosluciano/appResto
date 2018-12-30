@@ -57,6 +57,7 @@ export class MesaDetalleComponent implements OnInit {
   }
 
   borrarProducto(i){
+    this.total -= this.productosPedido[i].cantidad*this.productosPedido[i].precio;
     this.productosPedido.splice(i,1);
   }
 
